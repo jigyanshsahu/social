@@ -2,6 +2,8 @@
 import React from "react";
 import styled from "styled-components";
 import { useSearchParams, useRouter } from "next/navigation";
+import { setToken } from "@/lib/api";
+
 const Form = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -38,6 +40,18 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 
   const data = await response.json();
   console.log(data);
+
+  // Store token on successful login
+  if (data.success && data.token && !isSignup) {
+    setToken(data.token);
+    // Redirect to dashboard or home
+    router.push("/");
+  }
+
+  // Redirect to login on successful signup
+  if (data.success && isSignup) {
+    router.push("/auth?mode=login");
+  }
 };
   return (
 

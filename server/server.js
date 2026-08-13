@@ -24,6 +24,7 @@ app.get("/api/users", async (req, res) => {
 app.get("/", (req, res) => {
   res.send("api working");
 });
+app.use("/api/user", userRouter);
 
 app.listen(port, () => {
   console.log(`server started on http://localhost:${port}`);
