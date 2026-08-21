@@ -1,0 +1,343 @@
+@import url('https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&family=Fredoka:wght@400;500;600;700&family=Patrick+Hand&display=swap');
+
+:root {
+  /* Core Doodle Palette matching Login Page */
+  --ink: #323232;
+  --ink-light: #5a5a5a;
+  --ink-muted: #888888;
+  
+  --paper-front: #fff9e6;       /* Warm cream notebook page */
+  --paper-back: #e6f0ff;        /* Soft sky blue page */
+  --paper-green: #dcf8c6;       /* Telegram outgoing paper green */
+  --paper-pink: #ffeef2;        /* Soft pink doodle sheet */
+  --paper-yellow: #fff3c4;      /* Highlight / Pinned note yellow */
+  --paper-purple: #f3ebff;      /* Pastel purple doodle sheet */
+  --bg-color: #f7f4ea;          /* Overall workspace sketchpad bg */
+  
+  --primary-btn: #ff6b6b;
+  --primary-btn-hover: #ff5252;
+  --secondary-btn: #4ecdc4;
+  --secondary-btn-hover: #3bbfb6;
+  --switch-bg: #ffe66d;
+  --input-focus: #2d8cf0;
+  --accent-yellow: #ffd166;
+  --accent-mint: #06d6a0;
+  --accent-purple: #9d4edd;
+  --accent-orange: #ff9f1c;
+
+  /* Sizing & Borders */
+  --border-width: 2px;
+  --border-width-thick: 2.5px;
+  --shadow-offset: 4px;
+  --shadow-sm: 2px 2px 0px var(--ink);
+  --shadow-md: 4px 4px 0px var(--ink);
+  --shadow-lg: 6px 6px 0px var(--ink);
+  --shadow-hover: 5px 5px 0px var(--ink);
+
+  /* Doodle Border Radiuses from Login page */
+  --sketch-radius-1: 8px 24px 8px 24px / 24px 8px 24px 8px;
+  --sketch-radius-2: 24px 8px 24px 8px / 8px 24px 8px 24px;
+  --sketch-radius-3: 16px 6px 18px 8px / 8px 18px 6px 16px;
+  --sketch-radius-btn: 16px 5px 16px 5px / 5px 16px 5px 16px;
+  --sketch-radius-bubble-out: 18px 18px 4px 18px / 18px 18px 6px 18px;
+  --sketch-radius-bubble-in: 18px 18px 18px 4px / 18px 18px 18px 6px;
+  --sketch-radius-avatar: 50% 45% 55% 48% / 48% 52% 46% 54%;
+
+  /* Fonts */
+  --font-doodle: "Comic Sans MS", "Comic Neue", "Chalkboard SE", "Patrick Hand", "Marker Felt", cursive, sans-serif;
+  --font-heading: "Fredoka", "Comic Neue", "Comic Sans MS", cursive, sans-serif;
+}
+
+/* Base Body Styles */
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg-color);
+  color: var(--ink);
+  font-family: var(--font-doodle);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* Doodle Graph / Lined Paper Background */
+.doodle-bg-lined {
+  background-color: #faf7ef;
+  background-image: 
+    radial-gradient(var(--ink) 0.75px, transparent 0.75px),
+    repeating-linear-gradient(transparent, transparent 27px, rgba(50, 50, 50, 0.05) 28px);
+  background-size: 20px 20px, 100% 28px;
+}
+
+.doodle-bg-notebook {
+  background-color: #fdfaf2;
+  background-image: repeating-linear-gradient(
+    transparent,
+    transparent 28px,
+    rgba(50, 50, 50, 0.07) 28px,
+    rgba(50, 50, 50, 0.07) 30px
+  );
+  background-position: 0 10px;
+}
+
+.doodle-bg-grid {
+  background-color: #fcf9f2;
+  background-image: 
+    linear-gradient(rgba(50, 50, 50, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(50, 50, 50, 0.05) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+/* Doodle Card Container */
+.doodle-card {
+  background-color: var(--paper-front);
+  border: var(--border-width) solid var(--ink);
+  border-radius: var(--sketch-radius-1);
+  box-shadow: var(--shadow-md);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.doodle-card-interactive:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: var(--shadow-hover);
+}
+
+.doodle-card-interactive:active {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0px var(--ink);
+}
+
+/* Doodle Buttons */
+.doodle-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 6px 14px;
+  font-family: var(--font-heading);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: var(--ink);
+  background-color: var(--primary-btn);
+  border: var(--border-width) solid var(--ink);
+  border-radius: var(--sketch-radius-btn);
+  box-shadow: var(--shadow-sm);
+  cursor: pointer;
+  outline: none;
+  transition: all 0.15s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  user-select: none;
+}
+
+.doodle-button:hover {
+  background-color: var(--primary-btn-hover);
+  transform: translateY(-2px) rotate(-1deg);
+  box-shadow: var(--shadow-md);
+}
+
+.doodle-button:active {
+  transform: translate(2px, 2px) rotate(0deg);
+  box-shadow: 0px 0px 0px var(--ink);
+}
+
+.doodle-button-secondary {
+  background-color: var(--secondary-btn);
+}
+
+.doodle-button-secondary:hover {
+  background-color: var(--secondary-btn-hover);
+}
+
+.doodle-button-yellow {
+  background-color: var(--accent-yellow);
+}
+
+.doodle-button-yellow:hover {
+  background-color: #f7c34b;
+}
+
+.doodle-button-ghost {
+  background-color: transparent;
+  box-shadow: none;
+}
+
+.doodle-button-ghost:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Doodle Inputs */
+.doodle-input {
+  width: 100%;
+  padding: 8px 14px;
+  box-sizing: border-box;
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--ink);
+  background-color: #ffffff;
+  border: var(--border-width) solid var(--ink);
+  border-radius: var(--sketch-radius-1);
+  box-shadow: var(--shadow-sm);
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.doodle-input::placeholder {
+  color: #777777;
+  font-weight: normal;
+}
+
+.doodle-input:focus {
+  border-color: var(--input-focus);
+  border-radius: var(--sketch-radius-2);
+  background-color: #fffdf5;
+  box-shadow: var(--shadow-md);
+}
+
+/* Doodle Badges & Pills */
+.doodle-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2px 7px;
+  font-size: 12px;
+  font-weight: 700;
+  border: var(--border-width) solid var(--ink);
+  border-radius: 12px;
+  box-shadow: 1px 1px 0px var(--ink);
+  line-height: 1;
+}
+
+/* Message Bubble Outgoing (You) */
+.doodle-bubble-out {
+  background-color: var(--paper-green);
+  border: var(--border-width) solid var(--ink);
+  border-radius: var(--sketch-radius-bubble-out);
+  box-shadow: 3px 3px 0px var(--ink);
+  position: relative;
+}
+
+/* Message Bubble Incoming (Peer) */
+.doodle-bubble-in {
+  background-color: #ffffff;
+  border: var(--border-width) solid var(--ink);
+  border-radius: var(--sketch-radius-bubble-in);
+  box-shadow: 3px 3px 0px var(--ink);
+  position: relative;
+}
+
+/* Doodle Tag / Sticker Frame */
+.doodle-frame {
+  border: var(--border-width) solid var(--ink);
+  border-radius: var(--sketch-radius-1);
+  box-shadow: 2px 2px 0px var(--ink);
+  background: white;
+  padding: 4px;
+}
+
+/* Custom Doodle Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.03);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #c2bead;
+  border: 1.5px solid var(--ink);
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #a8a493;
+}
+
+/* Keyframe Animations */
+@keyframes float-star {
+  0%, 100% {
+    transform: translateY(0) rotate(-15deg);
+  }
+  50% {
+    transform: translateY(-8px) rotate(-8deg);
+  }
+}
+
+@keyframes float-sparkle {
+  0%, 100% {
+    transform: translateY(0) rotate(10deg);
+  }
+  50% {
+    transform: translateY(-8px) rotate(18deg);
+  }
+}
+
+@keyframes float-swirl {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-8px) rotate(8deg);
+  }
+}
+
+@keyframes doodle-wiggle {
+  0%, 100% {
+    transform: rotate(-2deg);
+  }
+  25% {
+    transform: rotate(2deg);
+  }
+  50% {
+    transform: rotate(-3deg);
+  }
+  75% {
+    transform: rotate(1deg);
+  }
+}
+
+@keyframes paper-plane-fly {
+  0% {
+    transform: translate(0, 0) rotate(0deg) scale(1);
+  }
+  50% {
+    transform: translate(12px, -8px) rotate(12deg) scale(1.1);
+  }
+  100% {
+    transform: translate(0, 0) rotate(0deg) scale(1);
+  }
+}
+
+@keyframes pop-in {
+  0% {
+    transform: scale(0.85);
+    opacity: 0;
+  }
+  70% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes wave-bar {
+  0%, 100% {
+    transform: scaleY(0.4);
+  }
+  50% {
+    transform: scaleY(1);
+  }
+}
+
+.animate-pop-in {
+  animation: pop-in 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+.animate-doodle-wiggle {
+  animation: doodle-wiggle 0.6s ease-in-out;
+}
